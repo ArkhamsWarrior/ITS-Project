@@ -26,7 +26,7 @@ class Ans{
 
 	Ans(String ans)
 	{
-		ans = this.ans;
+		ans = this.ans; //used "this" keyword so that the program knows the difference between parameter "ans" of the method and the variable "ans" of the class
 		
 	}
 
@@ -61,7 +61,7 @@ class Ans{
 
 	}
 
-	String returnAns()
+	String returnAns() //Returns ans. Allows you to assign "ans" to a variable
 	{
 		return ans;
 	}
@@ -76,8 +76,7 @@ class Points
 	{
 
 	}
-	public int displayPoints() {
-		// TODO Auto-generated method stub
+	public int displayPoints() { //used to assign points to a variable
 		return points;
 	}
 	Points(String ans)
@@ -100,21 +99,18 @@ class Points
 		
 	}
 
-	void returnPoints()//Checks to see if the points increment
+	void returnPoints()//Checks to see if the points increment, this is for the programmer. 
 	{
 		System.out.println(points);
 	}
 	
-	public int assignPoints()
-	{
-		return points;
-	}
 }
 class Student
 {
 	String 	name;
 	double GPA;
 	String year;
+	int interns;
 
 
 	Student()
@@ -147,17 +143,13 @@ class Student
 		return year;
 	}
 
-
-	public void introduceStudent()
+	public void numInternships(int internNums)
 	{
-		System.out.println("Name: " + name);
-		System.out.println("GPA: " + GPA);
-		System.out.println("Year: " + year);
-	}
-	public void findInternships()
-	{
-		System.out.println("Name: " + name);
-		System.out.println("GPA: " + GPA);
-		System.out.println("Year: " + year);
+		switch(internNums)
+		{
+		case 1: System.out.println("Congratulations " + name + "! As a " + year + "with a GPA of" + GPA + " you qualify for " + internNums + " internship!"); break;
+		
+		default: System.out.println("Congratulations " + name + "! As a " + year + " with a GPA of " + GPA + " you qualify for " +internNums + " internships!");
+		}
 	}
 }
