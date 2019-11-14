@@ -1,0 +1,163 @@
+package Main;
+
+import java.util.Scanner;
+
+public class internshipsClasses {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+
+
+class Ans{
+
+	String ans;
+	String fakeAns;
+
+	Scanner input= new Scanner(System.in);
+	Ans()
+	{
+
+	}
+
+	Ans(String ans)
+	{
+		ans = this.ans;
+		
+	}
+
+	void enterAns() //Enter an answer
+	{
+		ans = input.next();
+		ans = ans.toLowerCase();
+	}
+	void checkYorN()
+	{
+		ans=ans.toLowerCase();
+
+
+		if (ans.startsWith("y") || ans.startsWith("n"))//Don't do anything further if it begins with Y or N
+		{
+		}
+		else 
+		{
+
+			while (!ans.startsWith("y") || !ans.startsWith("n"))//Continue to ask user to input a new value until it starts with Y or N
+			{
+				System.out.println("Input a new answer:");
+				ans= input.next();
+				ans= ans.toLowerCase();
+				if (ans.startsWith("y") || ans.startsWith("n"))
+				{
+					break;
+				}
+
+			}
+		}
+
+	}
+
+	String returnAns()
+	{
+		return ans;
+	}
+}
+
+class Points
+{
+	int points=0;
+	String ans;
+
+	Points()
+	{
+
+	}
+	public int displayPoints() {
+		// TODO Auto-generated method stub
+		return points;
+	}
+	Points(String ans)
+	{
+		ans = this.ans;
+	}
+
+	void getPoints()//If "yes" increase the points
+	{
+		ans.toLowerCase();
+		if (ans.startsWith("y"))
+		{
+			points++;
+		}
+	}
+
+	void newAns(String newAns)//Assign a new answer 
+	{
+		ans=newAns;
+		
+	}
+
+	void returnPoints()//Checks to see if the points increment
+	{
+		System.out.println(points);
+	}
+	
+	public int assignPoints()
+	{
+		return points;
+	}
+}
+class Student
+{
+	String 	name;
+	double GPA;
+	String year;
+
+
+	Student()
+	{
+		name = "no name";
+		GPA = 0.0;
+		year = "Freshman";
+
+	}
+	public Student(String newName, double newGPA, String newYear)
+	{
+		name = newName;
+		GPA = newGPA;
+		year = newYear;
+
+
+	}
+	String getName()
+	{
+		return name;
+	}
+
+	double getGPA() 
+	{
+		return GPA;
+	}
+
+	String getYear()
+	{
+		return year;
+	}
+
+
+	public void introduceStudent()
+	{
+		System.out.println("Name: " + name);
+		System.out.println("GPA: " + GPA);
+		System.out.println("Year: " + year);
+	}
+	public void findInternships()
+	{
+		System.out.println("Name: " + name);
+		System.out.println("GPA: " + GPA);
+		System.out.println("Year: " + year);
+	}
+}
