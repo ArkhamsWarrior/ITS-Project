@@ -20,42 +20,48 @@ public class whatInternship extends internshipsClasses{
 		final String name = input.next();
 		System.out.println("How old are you " + name + "?");
 		final String age = input.next();
-		System.out.println("What year are you " + name + "?(Freshman, Sophomore, etc.)"); //If Soph, Jun, or Senior is entered, 
+		System.out.println("What year are you " + name + "?(Freshman, Sophomore, etc.)"); 
 		final String year = input.next();
 		System.out.println("What is your current, or most recent, GPA out of 4?");
 		double GPA = input.nextDouble();
 		
-		double scale = Math.pow(10, 1);
+		//Used to round the GPA to one decimal place
+		double scale = Math.pow(10, 1); 
 		GPA= Math.round(GPA*scale)/scale;
-		//input the data into a student object, and call a function from the object that returns their name age GPA, etc.
-
-		Student stud = new Student(name, GPA, year);
-
-		String ar[] = {"Name: " + name, "Age: " + age, "Class: " + year, "GPA: " + GPA};
 		
-		if (GPA <3.0)
+		
+		
+		if (GPA > 4.0 || GPA < 0.0)
+		{
+			while (GPA>4.0|| GPA < 0.0)
+			{
+				System.out.println("Please enter a GPA between 0.0 and 4.0:");
+				 GPA = input.nextDouble();
+			}
+		}
+		
+		if (GPA < 3.0)
 		{
 			System.out.println("Your GPA does not meet our minimum requirement.");
 			System.exit(0);
 		}
 		
-		for (int i = 0 ; i < ar.length; i++)
-		{
-			System.out.println(ar[i]);
-		}
-		//Go through specific skills, have the skills have booleans assigned to them,
-		//Have an array with the jobs they qualify for 
+		//input the data into a student object, and call a function from the object that returns their name age GPA, etc.
 
-		//Add points and display, would you like to know the internships you're available for 
-		//Switch will be 
+		Student stud = new Student(name, GPA, year);
+		
+		//Ends program if GPA is not 3.0 or higher
+	
+		
+
 		System.out.println("Now we will ask about your abilities and qualities to determine the internships that you qualify for. \n");
 
-		//Basic qualifications will be it's own point system, and you must have 4/5 points in that to continue to more questions
+		//Basic qualifications will be it's own point system, and you must have 5/6 points in that to continue to intermediate questions
 		 
 
 		Points basicPoints = new Points(); //Call the Points class
 		Ans basicAns= new Ans();
-		String ans; //Create a variable that holds the answer
+		
 		System.out.println("Do you have good verbal and written communication skills?");
 
 		basicAns.enterAns(); //Allows the user to input an Answer
@@ -120,7 +126,7 @@ public class whatInternship extends internshipsClasses{
 		if (totalbasicPoints < 5)
 		{
 		
-			System.out.println("Sorry you do not meet the necessary qualifications");
+			System.out.println("Sorry you do not meet the necessary qualifications.");
 			System.exit(0);
 		}
 		int internNums= 1;
@@ -134,7 +140,7 @@ public class whatInternship extends internshipsClasses{
 		Ans SDAns= new Ans();
 
 		
-		System.out.println("Have you practiced with Java programming for atleast one year?");
+		System.out.println("Have you practiced with Java programming for at least one year?");
 
 		SDAns.enterAns(); //Allows the user to input an Answer
 		SDAns.checkYorN();//Checks that the answer starts with "y" or "n"
@@ -197,7 +203,7 @@ public class whatInternship extends internshipsClasses{
 			unqualNums++;
 		}
 		
-		System.out.println("Can you stay organized when faced with numerous proects and tasks?");
+		System.out.println("Can you stay organized when faced with numerous projects and tasks?");
 
 		DSAns.enterAns(); //Allows the user to input an Answer
 		DSAns.checkYorN();//Checks that the answer starts with "y" or "n"
@@ -222,7 +228,7 @@ public class whatInternship extends internshipsClasses{
 		Points MLPoints = new Points(); //Call the Points class
 		Ans MLAns= new Ans();
 		
-		System.out.println("Do you have experience in Deep Learning (Tensorflow, PyTorch, and/or Keras)");
+		System.out.println("Do you have experience in Deep Learning (Tensorflow, PyTorch, and/or Keras)?");
 
 		MLAns.enterAns(); //Allows the user to input an Answer
 		MLAns.checkYorN();//Checks that the answer starts with "y" or "n"
@@ -231,7 +237,7 @@ public class whatInternship extends internshipsClasses{
 		MLPoints.newAns(MLAns.returnAns());//Assign the answer to the point system 
 		MLPoints.getPoints();//Check if the answer is YorN to increment points
 		
-		System.out.println("Have you had atleast one year of experience in C++?");
+		System.out.println("Have you had at least one year of experience in C++?");
 
 		MLAns.enterAns(); //Allows the user to input an Answer
 		MLAns.checkYorN();//Checks that the answer starts with "y" or "n"
@@ -310,7 +316,7 @@ public class whatInternship extends internshipsClasses{
 		
 		//Used to hold the number of positions in the array of qualified internships
 		int k=0;
-		//Used to check that there aren't any null values in the
+		//I made this for loop so that we can create an array without any null values based on the answers of the user
 		for (int i = 0; i<internships.length; i ++ )
 		{
 			
@@ -321,13 +327,13 @@ public class whatInternship extends internshipsClasses{
 		}
 		
 		
-		String results[]= new String[k]; //Create a new array that holds the total number of qualified internships
+		String results[]= new String[k]; //Create a new array that holds the users number of qualified internships
 		
 		for (int i = 0; i < k; i++)
 		{
 			results[i]= internships[i];//Assign the qualified internships to the new array, results.
 		}
-		
+		//This variable and for loop is used to create an array with the correct number of values for their unqualified internships
 		int g = 0;
 		for (int i = 0; i<unqualified.length; i ++ )
 		{
@@ -339,21 +345,16 @@ public class whatInternship extends internshipsClasses{
 		}
 		
 		
-		String unqualTotal[]= new String[g]; //Create a new array that holds the total number of qualified internships
+		String unqualTotal[]= new String[g]; //Create a new array that holds the total number of unqualified internships
 		
 		for (int i = 0; i < g; i++)
 		{
 			unqualTotal[i]= unqualified[i];//Assign the qualified internships to the new array, results.
 		}
 		
-		switch(internNums)
-		{
-		case 1: System.out.println("You qualify for 1 internship!"); break;
+		stud.numInternships(internNums);
 		
-		default: System.out.println("You qualify for "  +internNums + " internships!");
-		}
-		
-		System.out.println("These are the internships you qualify for: \n");
+		System.out.println("\nThese are the internships you qualify for: \n");
 		
 		for (int i = 0; i < results.length; i++)
 		{
@@ -367,8 +368,16 @@ public class whatInternship extends internshipsClasses{
 				System.out.print(results[i] + " \n");
 			}
 		}
+		if (unqualTotal.length==0)
+		{
+			System.out.println("\nThank you for using our program!");
+			System.exit(0);
+		}
+		else
+		{
+			
 		
-		System.out.println("\nThese are the internships you don't qualify for: ");
+		System.out.println("\nThese are the internships you don't qualify for: \n");
 		for(int i = 0 ; i < unqualTotal.length ; i++)
 		{
 			if (i != unqualTotal.length-1)
@@ -378,8 +387,10 @@ public class whatInternship extends internshipsClasses{
 			}
 			else
 			{
-				System.out.print(unqualTotal[i]);
+				System.out.print(unqualTotal[i] + " \n");
 			} 
+		}
+		System.out.println("\nThank you for using our program!");
 		}
 		
 
