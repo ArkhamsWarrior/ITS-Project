@@ -147,7 +147,7 @@ class Student
 	{
 		switch(internNums)
 		{
-		case 1: System.out.println("Congratulations " + name + "! As a " + year + "with a GPA of" + GPA + " you qualify for " + internNums + " internship!"); break;
+		case 1: System.out.println("Congratulations " + name + "! As a " + year + " with a GPA of " + GPA + " you qualify for " + internNums + " internship!"); break;
 		
 		default: System.out.println("Congratulations " + name + "! As a " + year + " with a GPA of " + GPA + " you qualify for " +internNums + " internships!");
 		}
