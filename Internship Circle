@@ -1,0 +1,390 @@
+package Main;
+
+import java.util.Scanner;
+
+import java.math.*;
+
+
+public class whatInternship extends internshipsClasses{
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Hi, welcome to the ITS Internship Check! \n\nIn this program, you will discover if you qualify "
+				+ "for an internship regarding Information Technology and the possible internships you may qualify for! \n "
+				+ "Enter your information and answer the questions to determine your possible and most qualified opportunities\n");
+		System.out.println("What is your name: ");
+		final String name = input.next();
+		System.out.println("How old are you " + name + "?");
+		final String age = input.next();
+		System.out.println("What year are you " + name + "?(Freshman, Sophomore, etc.)"); //If Soph, Jun, or Senior is entered, 
+		final String year = input.next();
+		System.out.println("What is your current, or most recent, GPA out of 4?");
+		double GPA = input.nextDouble();
+		
+		double scale = Math.pow(10, 1);
+		GPA= Math.round(GPA*scale)/scale;
+		//input the data into a student object, and call a function from the object that returns their name age GPA, etc.
+
+		Student stud = new Student(name, GPA, year);
+
+		String ar[] = {"Name: " + name, "Age: " + age, "Class: " + year, "GPA: " + GPA};
+		
+		if (GPA <3.0)
+		{
+			System.out.println("Your GPA does not meet our minimum requirement.");
+			System.exit(0);
+		}
+		
+		for (int i = 0 ; i < ar.length; i++)
+		{
+			System.out.println(ar[i]);
+		}
+		//Go through specific skills, have the skills have booleans assigned to them,
+		//Have an array with the jobs they qualify for 
+
+		//Add points and display, would you like to know the internships you're available for 
+		//Switch will be 
+		System.out.println("Now we will ask about your abilities and qualities to determine the internships that you qualify for. \n");
+
+		//Basic qualifications will be it's own point system, and you must have 4/5 points in that to continue to more questions
+		 
+
+		Points basicPoints = new Points(); //Call the Points class
+		Ans basicAns= new Ans();
+		String ans; //Create a variable that holds the answer
+		System.out.println("Do you have good verbal and written communication skills?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Are you self-motivated?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Are you able to work in teams and collaborate?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		
+		System.out.println("Do you have at least one year of programming?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Do you have good math skills?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Do you have critical thinking skills?");
+
+		basicAns.enterAns(); //Allows the user to input an Answer
+		basicAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
+		basicPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		//After the 5 questions are answers, we need a gate that considers the number of points they have and 
+		//checks if they have enough points to proceed to the next questions
+		//If they don't have the points necessary they still have the option to continue the program 
+		int totalbasicPoints = basicPoints.displayPoints();
+		
+		
+		if (totalbasicPoints < 5)
+		{
+		
+			System.out.println("Sorry you do not meet the necessary qualifications");
+			System.exit(0);
+		}
+		int internNums= 1;
+		int unqualNums = 0;
+		String internships[] = new String[7];
+		String unqualified[]= new String[6];
+		internships[0]= "Information Technology";
+		
+		
+		Points SDPoints = new Points(); //Call the Points class
+		Ans SDAns= new Ans();
+
+		
+		System.out.println("Have you practiced with Java programming for atleast one year?");
+
+		SDAns.enterAns(); //Allows the user to input an Answer
+		SDAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		SDPoints.newAns(SDAns.returnAns());//Assign the answer to the point system 
+		SDPoints.getPoints();//Check if the answer is YorN to increment points
+
+		int SDpoints = SDPoints.displayPoints();
+		if (SDpoints > 0)
+		{
+			internships[internNums] = "Software Developer";
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Software Developer";
+			unqualNums++;
+		}
+		
+		Points DSPoints = new Points(); //Call the Points class
+		Ans DSAns= new Ans();
+		
+		System.out.println("Do you have statistical computer experience?");
+
+		DSAns.enterAns(); //Allows the user to input an Answer
+		DSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		DSPoints.newAns(DSAns.returnAns());//Assign the answer to the point system 
+		DSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Have you had experience with R or Python for atleast one year?");
+
+		DSAns.enterAns(); //Allows the user to input an Answer
+		DSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		DSPoints.newAns(DSAns.returnAns());//Assign the answer to the point system 
+		DSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Have you worked with analytical data sets?");
+
+		DSAns.enterAns(); //Allows the user to input an Answer
+		DSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		DSPoints.newAns(DSAns.returnAns());//Assign the answer to the point system 
+		DSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		int DSpoints = DSPoints.displayPoints();
+		if (DSpoints == 3)
+		{
+			internships[internNums] = "Data Science";
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Data Science";
+			unqualNums++;
+		}
+		
+		System.out.println("Can you stay organized when faced with numerous proects and tasks?");
+
+		DSAns.enterAns(); //Allows the user to input an Answer
+		DSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		DSPoints.newAns(DSAns.returnAns());//Assign the answer to the point system 
+		DSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		DSpoints = DSPoints.displayPoints();//Checks the value of points again
+		
+		if (DSpoints == 4)
+		{
+			internships[internNums] = "Data Analyst";
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Data Analyst";
+			unqualNums++;
+		}
+		
+		Points MLPoints = new Points(); //Call the Points class
+		Ans MLAns= new Ans();
+		
+		System.out.println("Do you have experience in Deep Learning (Tensorflow, PyTorch, and/or Keras)");
+
+		MLAns.enterAns(); //Allows the user to input an Answer
+		MLAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		MLPoints.newAns(MLAns.returnAns());//Assign the answer to the point system 
+		MLPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Have you had atleast one year of experience in C++?");
+
+		MLAns.enterAns(); //Allows the user to input an Answer
+		MLAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		MLPoints.newAns(MLAns.returnAns());//Assign the answer to the point system 
+		MLPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		int MLpoints = MLPoints.displayPoints();
+		if (MLpoints == 2)
+		{
+			internships[internNums] = "Machine Learning";
+
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Machine Learning";
+			unqualNums++;
+		}
+
+		Points CSPoints = new Points(); //Call the Points class
+		Ans CSAns= new Ans();
+		
+		System.out.println("Do you have practice in Networking (Working with Routers and Switches and Determining Performance Issues)?");
+
+		CSAns.enterAns(); //Allows the user to input an Answer
+		CSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		CSPoints.newAns(CSAns.returnAns());//Assign the answer to the point system 
+		CSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		System.out.println("Have you had experience as a Computer Science Intern (atleast one season)?");
+
+		CSAns.enterAns(); //Allows the user to input an Answer
+		CSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		CSPoints.newAns(CSAns.returnAns());//Assign the answer to the point system 
+		CSPoints.getPoints();//Check if the answer is YorN to increment points
+
+		int CSpoints = CSPoints.displayPoints();
+		if (CSpoints == 2)
+		{
+			internships[internNums] = "Networking";
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Networking";
+			unqualNums++;
+		}
+		
+		System.out.println("Have you taken Cyber Security courses?");
+
+		CSAns.enterAns(); //Allows the user to input an Answer
+		CSAns.checkYorN();//Checks that the answer starts with "y" or "n"
+
+
+		CSPoints.newAns(CSAns.returnAns());//Assign the answer to the point system 
+		CSPoints.getPoints();//Check if the answer is YorN to increment points
+		
+		CSpoints = CSPoints.displayPoints(); //Checks the value of points again
+		
+		if (CSpoints == 3)
+		{
+			internships[internNums] = "Cyber Security";
+			internNums++;
+		}
+		else
+		{
+			unqualified[unqualNums] = "Cyber Security";
+			unqualNums++;
+		}
+		
+		//Used to hold the number of positions in the array of qualified internships
+		int k=0;
+		//Used to check that there aren't any null values in the
+		for (int i = 0; i<internships.length; i ++ )
+		{
+			
+			if (internships[i] != null)
+			{
+				k++;
+			}
+		}
+		
+		
+		String results[]= new String[k]; //Create a new array that holds the total number of qualified internships
+		
+		for (int i = 0; i < k; i++)
+		{
+			results[i]= internships[i];//Assign the qualified internships to the new array, results.
+		}
+		
+		int g = 0;
+		for (int i = 0; i<unqualified.length; i ++ )
+		{
+			
+			if (unqualified[i] != null)
+			{
+				g++;
+			}
+		}
+		
+		
+		String unqualTotal[]= new String[g]; //Create a new array that holds the total number of qualified internships
+		
+		for (int i = 0; i < g; i++)
+		{
+			unqualTotal[i]= unqualified[i];//Assign the qualified internships to the new array, results.
+		}
+		
+		switch(internNums)
+		{
+		case 1: System.out.println("You qualify for 1 internship!"); break;
+		
+		default: System.out.println("You qualify for "  +internNums + " internships!");
+		}
+		
+		System.out.println("These are the internships you qualify for: \n");
+		
+		for (int i = 0; i < results.length; i++)
+		{
+			if (i != results.length-1)
+			{
+				System.out.print( results[i] + ", " );
+
+			}
+			else
+			{
+				System.out.print(results[i] + " \n");
+			}
+		}
+		
+		System.out.println("\nThese are the internships you don't qualify for: ");
+		for(int i = 0 ; i < unqualTotal.length ; i++)
+		{
+			if (i != unqualTotal.length-1)
+			{
+				System.out.print( unqualTotal[i] + ", " );
+
+			}
+			else
+			{
+				System.out.print(unqualTotal[i]);
+			} 
+		}
+		
+
+
+	}
+
+
+}
