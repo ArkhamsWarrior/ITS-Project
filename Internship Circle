@@ -4,18 +4,19 @@ import java.util.Scanner;
 
 import java.math.*;
 
+//Created by Jadyn Fletcher and Sam Dicken
 
 public class whatInternship extends internshipsClasses{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 		
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Hi, welcome to the ITS Internship Check! \n\nIn this program, you will discover if you qualify "
-				+ "for an internship regarding Information Technology and the possible internships you may qualify for! \n "
-				+ "Enter your information and answer the questions to determine your possible and most qualified opportunities\n");
+				+ "for an internship regarding Information Technology and the possible internships you may qualify for! \n"
+				+ "Enter your information and answer the questions to determine your possible and most qualified opportunities.\n");
 		System.out.println("What is your name: ");
 		final String name = input.next();
 		System.out.println("How old are you " + name + "?");
@@ -30,7 +31,7 @@ public class whatInternship extends internshipsClasses{
 		GPA= Math.round(GPA*scale)/scale;
 		
 		
-		
+		//Makes sure the GPA entered is between 0 and 4
 		if (GPA > 4.0 || GPA < 0.0)
 		{
 			while (GPA>4.0|| GPA < 0.0)
@@ -40,27 +41,24 @@ public class whatInternship extends internshipsClasses{
 			}
 		}
 		
+		//Ends program if GPA is not 3.0 or higher
 		if (GPA < 3.0)
 		{
 			System.out.println("Your GPA does not meet our minimum requirement.");
 			System.exit(0);
 		}
 		
-		//input the data into a student object, and call a function from the object that returns their name age GPA, etc.
+		//input the data into a student object, and call a function from the object that returns their name, year, GPA
 
 		Student stud = new Student(name, GPA, year);
-		
-		//Ends program if GPA is not 3.0 or higher
 	
-		
-
 		System.out.println("Now we will ask about your abilities and qualities to determine the internships that you qualify for. \n");
 
 		//Basic qualifications will be it's own point system, and you must have 5/6 points in that to continue to intermediate questions
 		 
 
 		Points basicPoints = new Points(); //Call the Points class
-		Ans basicAns= new Ans();
+		Ans basicAns= new Ans();//Call the answer class
 		
 		System.out.println("Do you have good verbal and written communication skills?");
 
@@ -117,27 +115,29 @@ public class whatInternship extends internshipsClasses{
 		basicPoints.newAns(basicAns.returnAns());//Assign the answer to the point system 
 		basicPoints.getPoints();//Check if the answer is YorN to increment points
 		
-		//After the 5 questions are answers, we need a gate that considers the number of points they have and 
+		//After the 5 questions are answers, we needed a gate that considers the number of points they have and 
 		//checks if they have enough points to proceed to the next questions
 		//If they don't have the points necessary they still have the option to continue the program 
-		int totalbasicPoints = basicPoints.displayPoints();
 		
 		
+		int totalbasicPoints = basicPoints.displayPoints();//Created a variable that holds the user's total number of points
+		
+		//Ends program if they don't meet the minimum number of requirements 
 		if (totalbasicPoints < 5)
 		{
 		
 			System.out.println("Sorry you do not meet the necessary qualifications.");
 			System.exit(0);
 		}
-		int internNums= 1;
-		int unqualNums = 0;
-		String internships[] = new String[7];
-		String unqualified[]= new String[6];
-		internships[0]= "Information Technology";
+		int internNums= 1;//Keeps track of the number of internships the user qualifies for
+		int unqualNums = 0;//Keeps track of the number of internships the user isn't qualified for
+		String internships[] = new String[7];//An array that holds the qualified internships
+		String unqualified[]= new String[6];//An array the holds the unqualified internships
+		internships[0]= "Information Technology";//Assign IT to the first position of the qualified internship array since you only need the basic req's for this
 		
 		
-		Points SDPoints = new Points(); //Call the Points class
-		Ans SDAns= new Ans();
+		Points SDPoints = new Points(); //Call the Points class and create new objects for each internship 
+		Ans SDAns= new Ans();//Call the Ans Class
 
 		
 		System.out.println("Have you practiced with Java programming for at least one year?");
@@ -149,16 +149,17 @@ public class whatInternship extends internshipsClasses{
 		SDPoints.newAns(SDAns.returnAns());//Assign the answer to the point system 
 		SDPoints.getPoints();//Check if the answer is YorN to increment points
 
-		int SDpoints = SDPoints.displayPoints();
+		int SDpoints = SDPoints.displayPoints(); //Collects the points obtained
+		
 		if (SDpoints > 0)
 		{
-			internships[internNums] = "Software Developer";
-			internNums++;
+			internships[internNums] = "Software Developer";//Adds the internship to your qualified internship array
+			internNums++;//Increments the number of qualified internships
 		}
 		else
 		{
-			unqualified[unqualNums] = "Software Developer";
-			unqualNums++;
+			unqualified[unqualNums] = "Software Developer";//Adds the internship to your unqualified internships array
+			unqualNums++;//Increments the number of unqualified internships
 		}
 		
 		Points DSPoints = new Points(); //Call the Points class
@@ -250,7 +251,6 @@ public class whatInternship extends internshipsClasses{
 		if (MLpoints == 2)
 		{
 			internships[internNums] = "Machine Learning";
-
 			internNums++;
 		}
 		else
@@ -319,7 +319,7 @@ public class whatInternship extends internshipsClasses{
 		//I made this for loop so that we can create an array without any null values based on the answers of the user
 		for (int i = 0; i<internships.length; i ++ )
 		{
-			
+			//Records the number of occupied indexes in the array
 			if (internships[i] != null)
 			{
 				k++;
@@ -337,7 +337,7 @@ public class whatInternship extends internshipsClasses{
 		int g = 0;
 		for (int i = 0; i<unqualified.length; i ++ )
 		{
-			
+			//Records the number of occupied indexes in the array
 			if (unqualified[i] != null)
 			{
 				g++;
@@ -360,7 +360,7 @@ public class whatInternship extends internshipsClasses{
 		{
 			if (i != results.length-1)
 			{
-				System.out.print( results[i] + ", " );
+				System.out.print(results[i] + ", " );
 
 			}
 			else
@@ -390,6 +390,7 @@ public class whatInternship extends internshipsClasses{
 				System.out.print(unqualTotal[i] + " \n");
 			} 
 		}
+		
 		System.out.println("\nThank you for using our program!");
 		}
 		
